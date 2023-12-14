@@ -1,1 +1,12 @@
+<!-- En tu formulario HTML -->
 <p>login works!</p>
+
+<form class="app-login" (ngSubmit)="onSubmit()" [formGroup]="loginOn">
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email" required> <!-- Usa formControlName -->
+
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" formControlName="password" required> <!-- Usa formControlName -->
+
+    <button type="submit">Iniciar Sesión</button>
+</form>
