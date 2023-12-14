@@ -1,0 +1,43 @@
+/* login.component.css */
+
+/* Aplica un estilo global al componente */
+:host {
+  display: block;
+  margin: 20px; /* Ajusta según sea necesario */
+}
+
+/* Estilo para el formulario */
+form {
+  width: 300px; /* Ajusta según sea necesario */
+  margin: auto;
+}
+
+/* Estilo para los campos de entrada */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+/* Estilo para los mensajes de error */
+div {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Estilo para el botón de envío */
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
