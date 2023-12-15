@@ -1,40 +1,67 @@
-/* login.component.css */
-
 /* Aplica un estilo global al componente */
 :host {
   display: block;
   margin: 20px; /* Ajusta según sea necesario */
 }
+div {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 12%;
+  left: 33%;
+}
 
-/* Estilo para el formulario */
+.logo {
+  width: 50%;
+  border-radius: 400px;
+  transform: translate(51px, -36px);
+}
+.titulo-logo {
+  width: 70%;
+  transform: translate(3px, -30px);
+}
+.container-form {
+  background-color: #cd36a7;
+  top: 35%;
+  left: 59%;
+  transform: translate(-63%, 14%);
+  justify-content: center;
+  height: 305px;
+  border-radius: 15px;
+  margin-top: 90px;
+  width: 50%;
+}
 form {
-  width: 300px; /* Ajusta según sea necesario */
-  margin: auto;
+  transform: translate(104%, -3%);
+  width: 30%;
 }
 
 /* Estilo para los campos de entrada */
 input {
-  width: 100%;
+  width: 135%;
   padding: 10px;
   margin-bottom: 10px;
   box-sizing: border-box;
+  border-radius: 15px;
 }
 
 /* Estilo para los mensajes de error */
 div {
-  color: red;
+  color: rgb(250, 249, 249);
   font-size: 12px;
   margin-top: 5px;
 }
 
 /* Estilo para el botón de envío */
 button {
-  background-color: #4caf50;
-  color: white;
+  background-color: #f9f7f8;
+  color: rgb(21, 21, 21);
   padding: 10px;
   border: none;
   cursor: pointer;
   width: 100%;
+  border-radius: 15px;
+  transform: translate(26px, 10px);
 }
 
 button:disabled {
