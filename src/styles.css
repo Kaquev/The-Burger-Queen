@@ -10,8 +10,17 @@ body {
   background-size: cover; /* O ajusta según tus preferencias */
   background-position: center center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   margin: 0; /* Asegura que no haya márgenes predeterminados */
   padding: 0; /* Asegura que no haya relleno predeterminado */
   font-family: "Arial", sans-serif; /* O la fuente que prefieras */
   height: 100vh;
 }
+
+/* body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+body::-webkit-scrollbar {
+  width: 0.5em;
+} */
