@@ -1,1 +1,24 @@
-<p>order-summary works!</p>
+<div class="container-form">
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+        <!-- Otros campos del formulario -->
+
+        <div formArrayName="selectedMenu">
+            <div *ngFor="let menuItem of selectedMenu.controls; let i = index" [formGroupName]="i">
+                <!-- Agrega tus campos del menú aquí -->
+                <label for="itemName">Item Name:</label>
+                <input type="text" id="itemName" formControlName="itemName">
+
+                <!-- Otros campos del menú -->
+
+                <!-- Botón para eliminar el ítem del menú -->
+                <button type="button" (click)="removeMenuItem(i)">Eliminar</button>
+            </div>
+        </div>
+
+        <!-- Botón para agregar un nuevo ítem al menú -->
+        <button type="button" (click)="addMenuItem()">Agregar Ítem</button>
+
+        <!-- Botón de envío del formulario -->
+        <button type="submit">Enviar Pedido</button>
+    </form>
+</div>
