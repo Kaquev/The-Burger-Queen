@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorDialogComponent } from '../components/error-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +12,16 @@ import { LoginService } from '../services/login.service';
 })
 export class LoginComponent implements OnInit {
   loginOn!: FormGroup;
+  errorMessage: string = '';
   // email: string = '';
   // password: string = '';
+  showPassword: boolean = false;
 
   constructor(
     private readonly fb: FormBuilder,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -36,9 +41,17 @@ export class LoginComponent implements OnInit {
         },
         (error) => {
           console.log(error);
-          alert('Los datos no corresponden, vuelve a intentarlo');
+          this.openErrorDialog(
+            'Los datos no corresponden, vuelve a intentarlo'
+          );
         }
       );
+  }
+
+  openErrorDialog(errorMessage: string): void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: { errorMessage },
+    });
   }
 
   initForm(): FormGroup {
