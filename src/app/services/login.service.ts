@@ -6,13 +6,16 @@ import { LoginInterface } from '../models/login.interface';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginDataService {
-  private apiUrl =
-    'https://virtserver.swaggerhub.com/ssinuco/BurgerQueenAPI/2.0.0/login';
+export class LoginService {
+  private apiUrl = 'http://localhost:8080';
+
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<LoginInterface> {
-    const body = { email, password };
-    return this.http.post<LoginInterface>(this.apiUrl, body);
+    const body = {
+      email: email,
+      password: password,
+    };
+    return this.http.post<LoginInterface>(this.apiUrl + '/login', body);
   }
 }

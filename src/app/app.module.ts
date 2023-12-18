@@ -7,6 +7,8 @@ import { MenuComponent } from './menu/menu.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginService } from './services/login.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,8 +17,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     OrderSummaryComponent,
     LoginComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
+  providers: [LoginService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
