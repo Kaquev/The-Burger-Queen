@@ -1,24 +1,92 @@
-<div class="container-form">
-    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
-        <!-- Otros campos del formulario -->
+<form class="container-order" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <mat-label>Nombre del cliente</mat-label>
+        <input matInput formControlName="clientName">
+    </mat-form-field>
 
-        <div formArrayName="selectedMenu">
-            <div *ngFor="let menuItem of selectedMenu.controls; let i = index" [formGroupName]="i">
-                <!-- Agrega tus campos del menú aquí -->
-                <label for="itemName">Item Name:</label>
-                <input type="text" id="itemName" formControlName="itemName">
+    <mat-form-field>
+        <mat-label>Seleccione un menú</mat-label>
+        <mat-select formControlName="selectedMenu">
+            <mat-option value="desayuno">Menú Desayuno</mat-option>
+            <mat-option value="restoDia">Menú Resto del Día</mat-option>
+        </mat-select>
+    </mat-form-field>
 
-                <!-- Otros campos del menú -->
-
-                <!-- Botón para eliminar el ítem del menú -->
-                <button type="button" (click)="removeMenuItem(i)">Eliminar</button>
-            </div>
+    <div *ngIf="orderForm.get('selectedMenu')?.value === 'desayuno'">
+        <h3>Menú Desayuno</h3>
+        <div *ngFor="let item of menuItems">
+            <mat-checkbox [formControlName]="item.name">{{ item.name }} - ${{ item.price }}</mat-checkbox>
         </div>
+    </div>
 
-        <!-- Botón para agregar un nuevo ítem al menú -->
-        <button type="button" (click)="addMenuItem()">Agregar Ítem</button>
+    <div *ngIf="orderForm.get('selectedMenu')?.value === 'restoDia'">
+        <h3>Menú Resto del Día</h3>
+        <div *ngFor="let item of menuItems">
+            <mat-checkbox [formControlName]="item.name">{{ item.name }} - ${{ item.price }}</mat-checkbox>
+        </div>
+    </div>
 
-        <!-- Botón de envío del formulario -->
-        <button type="submit">Enviar Pedido</button>
-    </form>
-</div>
+    <mat-form-field>
+        <mat-label>Textarea</mat-label>
+        <textarea matInput formControlName="additionalComments"></textarea>
+    </mat-form-field>
+
+    <div>
+        <h3>Resumen del Pedido</h3>
+        <ul>
+            <li *ngFor="let item of getSelectedItems()">
+                {{ item.name }} - ${{ item.price }}
+            </li>
+        </ul>
+        <p>Total: ${{ calculateTotal() }}</p>
+    </div>
+
+    <button type="submit">Realizar Pedido</button>
+</form>
+
+
+
+
+<!-- <form class="container-order">
+    <h1>Order Pedido</h1>
+    <mat-form-field>
+        <mat-label>Nombre del cliente</mat-label>
+        <input matInput>
+        <mat-select-trigger>
+            <button mat-icon-button aria-label="Check">
+                <mat-icon>check</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="Eliminar">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-select-trigger>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Menu</mat-label>
+        <mat-select>
+            <mat-option value="one">Primer option</mat-option>
+            <mat-option value="two">Segundo option</mat-option>
+            <mat-option value="three">Tercero option</mat-option>
+            <mat-option value="four">Cuarto option</mat-option>
+            <mat-option value="five">Quinto option</mat-option>
+            <mat-option value="six">Sexto option</mat-option>
+            <mat-option value="seven">Séptimo option</mat-option>
+            <mat-option value="eight">Octavo option</mat-option>
+        </mat-select>
+        <mat-select-trigger>
+            <button mat-icon-button aria-label="Check">
+                <mat-icon>check</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="Eliminar">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-select-trigger>
+    </mat-form-field>
+
+
+
+    <mat-form-field>
+        <mat-label>Comentario Adicional</mat-label>
+        <textarea matInput></textarea>
+    </mat-form-field>
+</form> -->

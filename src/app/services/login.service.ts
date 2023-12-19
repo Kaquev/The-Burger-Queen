@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginInterface } from '../models/login.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,6 @@ export class LoginService {
       email: email,
       password: password,
     };
-    return this.http.post<LoginInterface>(this.apiUrl + '/login', body);
+    return this.http.post<LoginInterface>(environment.apiUrl + '/login', body);
   }
 }
