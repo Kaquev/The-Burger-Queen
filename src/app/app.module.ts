@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { ErrorDialogComponent } from './components/error-dialog.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminMenuComponent } from './components/admin-menu/admin-menu.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     ErrorDialogComponent,
     OrderSummaryComponent,
+    AdminMenuComponent,
   ],
   imports: [
     BrowserModule,

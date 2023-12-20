@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { MenuService } from '../services/menu.service';
 import { MenuItem } from '../models/menu.interface';
+import { AdminMenuService } from '../services/admin-menu.service';
 
 @Component({
   selector: 'app-order-summary',
@@ -11,14 +12,30 @@ import { MenuItem } from '../models/menu.interface';
 export class OrderSummaryComponent implements OnInit {
   orderForm!: FormGroup;
   menuItems: MenuItem[] = [];
+  isAdmin: boolean = false; // Variable para verificar si es un administrador
 
-  constructor(private fb: FormBuilder, private menuService: MenuService) {}
+  constructor(
+    private fb: FormBuilder,
+    private menuService: MenuService,
+    private adminMenuService: AdminMenuService
+  ) {}
 
   ngOnInit(): void {
     this.orderForm = this.fb.group({
       clientName: '',
-      selectedMenu: this.fb.group({}),
+      selectedMenu: '',
+      additionalComments: '',
     });
+
+    // // Comprueba si el usuario es un administrador
+    // this.isAdmin = /* Lógica para verificar si el usuario es un administrador */
+
+    // // Usa el servicio de menú correspondiente según el tipo de usuario
+    // const menuService = this.isAdmin ? this.adminMenuService : this.menuService;
+
+    // menuService.getMenu().subscribe((menuItems) => {
+    //   this.menuItems = menuItems;
+    // });
 
     this.menuService.getMenu().subscribe((menuItems) => {
       this.menuItems = menuItems;

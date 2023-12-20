@@ -1,4 +1,8 @@
 export interface LoginInterface {
-  token: string; //propiedad que retorne la API
-  //  otras propiedades según lo que retorne tu API
+  accessToken: string;
+  user: {
+    email: string;
+    id: number;
+    role: string;
+  };
 }

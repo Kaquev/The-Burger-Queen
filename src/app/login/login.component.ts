@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../components/error-dialog.component';
+import { LoginInterface } from '../models/login.interface';
 
 @Component({
   selector: 'app-login',
@@ -31,12 +32,16 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     this.loginService
       .login(
-        this.loginOn.controls['email'].value,
-        this.loginOn.controls['password'].value
+        this.loginOn.get('email')?.value,
+        this.loginOn.get('password')?.value
       )
       .subscribe(
-        (response) => {
+        (response: LoginInterface) => {
+          //se utiliza sessionStorage
           sessionStorage.setItem('dataUser', JSON.stringify(response)); //todo el objeto del service se guardara como string
+          if (response.user.role === 'admin') {
+            this.router.navigate(['/admin-menu']);
+          }
           this.router.navigate(['/order-summary']);
         },
         (error) => {
