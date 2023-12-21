@@ -17,10 +17,29 @@ body {
   height: 100vh;
 }
 
-/* body::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  outline: 1px solid slategrey;
+.container-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  gap: 27px;
+  margin-top: 120px;
 }
-body::-webkit-scrollbar {
-  width: 0.5em;
-} */
+
+.logo {
+  width: 35%;
+  border-radius: 107px;
+}
+.titulo-logo {
+  width: 55%;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

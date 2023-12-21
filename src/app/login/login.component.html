@@ -1,21 +1,24 @@
-<section class="container-principal">
-    <div class="container-img">
-        <img class="logo" src="../../assets/logo.svg" alt="">
-        <img class="titulo-logo" src="../../assets/The Burger Queen.svg" alt="">
+<form (ngSubmit)="onSubmit()" [formGroup]="loginOn">
+    <mat-form-field>
+        <mat-label>Email:</mat-label>
+        <input matInput type="email" formControlName="email" required autocomplete="email">
+        <mat-error *ngIf="loginOn.controls['email'].hasError('required') && loginOn.controls['email'].touched">
+            Email es requerido
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Contraseña:</mat-label>
+        <input matInput type="password" formControlName="password" required autocomplete="current-password">
+        <mat-error *ngIf="loginOn.controls['password'].hasError('required') && loginOn.controls['password'].touched">
+            Contraseña es requerida
+        </mat-error>
+    </mat-form-field>
+
+    <button type="submit" [disabled]="loginOn.invalid">Iniciar Sesión</button>
+
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+        <button mat-button (click)="openErrorDialog('error')">Ver Detalles</button>
     </div>
-
-    <div class="container-form">
-        <form class="app-login" (ngSubmit)="onSubmit()" [formGroup]="loginOn">
-            <label for="email">Email:</label>
-            <input type="email" id="email" formControlName="email" required> <!-- Usa formControlName -->
-
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" formControlName="password" required> <!-- Usa formControlName -->
-
-            <button type="submit">Iniciar Sesión</button>
-        </form>
-
-    </div>
-
-
-</section>
+</form>

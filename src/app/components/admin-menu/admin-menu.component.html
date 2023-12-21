@@ -1,0 +1,13 @@
+<!-- admin-menu.component.html -->
+<div>
+    <h2>Administrar Menú</h2>
+
+    <ul>
+        <li *ngFor="let menuItem of menuItems">
+            {{ menuItem.name }}
+            <button (click)="editMenuItem(menuItem)">Editar</button>
+            <button (click)="viewMenuItem(menuItem)">Ver</button>
+            <button (click)="deleteMenuItem(menuItem)">Eliminar</button>
+        </li>
+    </ul>
+</div>
