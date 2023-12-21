@@ -1,0 +1,11 @@
+.container-btn {
+  display: flex;
+  justify-content: center;
+}
+h2 {
+  text-align: center;
+}
+.mat-button-toggle-group {
+  background-color: #eff4f6;
+  border: 1px solid #ccc;
+}

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/login.service';
+import { LoginService } from '../../services/login.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ErrorDialogComponent } from '../components/error-dialog.component';
-import { LoginInterface } from '../models/login.interface';
+import { ErrorDialogComponent } from '../error-dialog.component';
+import { LoginInterface } from '../../models/login.interface';
 
 @Component({
   selector: 'app-login',
@@ -41,8 +41,9 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('dataUser', JSON.stringify(response)); //todo el objeto del service se guardara como string
           if (response.user.role === 'admin') {
             this.router.navigate(['/admin-menu']);
+          } else {
+            this.router.navigate(['/order-summary']);
           }
-          this.router.navigate(['/order-summary']);
         },
         (error) => {
           console.log(error);
