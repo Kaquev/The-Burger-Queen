@@ -2,6 +2,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Product } from '../models/order.inteface';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -10,8 +12,8 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts() {
-    return this.http.get(`${this.baseUrl}`);
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.baseUrl);
   }
 
   getProductById(productId: string) {

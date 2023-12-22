@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -51,6 +52,7 @@ import { ProductsComponent } from './components/products/products.component';
     MatSelectModule,
     MatButtonModule,
     AppRoutingModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

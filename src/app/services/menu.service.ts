@@ -20,10 +20,10 @@ export class MenuService {
 
   // Puedes tener métodos adicionales para obtener menús específicos según el rol
   getAdminMenu(): Observable<MenuItem[]> {
-    return this.http.get<MenuItem[]>(`${this.baseUrl}/admin`);
+    return this.http.get<MenuItem[]>(`${this.baseUrl}/users`);
   }
 
   getUserMenu(): Observable<MenuItem[]> {
-    return this.http.get<MenuItem[]>(`${this.baseUrl}/user`);
+    return this.http.get<MenuItem[]>(`${this.baseUrl}/users`);
   }
 }

@@ -6,7 +6,3 @@ export interface Product {
   type: string;
   dateEntry: string;
 }
-
-export interface ProductListResponse {
-  listaProductos: Product[];
-}

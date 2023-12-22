@@ -14,17 +14,17 @@
 
     <div *ngIf="orderForm.get('selectedMenu')?.value === 'desayuno'">
         <h3>Menú Desayuno</h3>
-        <div *ngFor="let item of menuItems">
+        <div *ngFor="let item of menuItems ">
             <mat-checkbox [formControlName]="item.name">{{ item.name }} - ${{ item.price }}</mat-checkbox>
         </div>
     </div>
 
-    <!-- <div *ngIf="orderForm.get('selectedMenu')?.value === 'restoDia'">
+    <div *ngIf="orderForm.get('selectedMenu')?.value === 'restoDia'">
         <h3>Menú Resto del Día</h3>
-        <div *ngFor="let item of menuItems">
+        <div *ngFor="let item of menuItems ">
             <mat-checkbox [formControlName]="item.name">{{ item.name }} - ${{ item.price }}</mat-checkbox>
         </div>
-    </div> -->
+    </div>
 
     <mat-form-field>
         <mat-label>Textarea</mat-label>
@@ -43,6 +43,7 @@
 
     <button type="submit">Realizar Pedido</button>
 </form>
+
 
 
 

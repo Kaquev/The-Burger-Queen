@@ -1,9 +1,9 @@
-// order-summary.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { MenuService } from '../../services/menu.service';
-import { MenuItem } from '../../models/menu.interface';
+import { Product } from '../../models/product.interface';
+import { MenuItem } from 'src/app/models/menu.interface';
 
 @Component({
   selector: 'app-order-summary',
@@ -12,7 +12,7 @@ import { MenuItem } from '../../models/menu.interface';
 })
 export class OrderSummaryComponent implements OnInit {
   orderForm!: FormGroup;
-  menuItems: MenuItem[] = [];
+  menuItems: Product[] = [];
   isAdmin: boolean = false;
 
   constructor(
@@ -35,9 +35,24 @@ export class OrderSummaryComponent implements OnInit {
       ? this.menuService.getAdminMenu()
       : this.menuService.getUserMenu();
 
-    menuObservable.subscribe((menuItems) => {
-      this.menuItems = menuItems;
+    menuObservable.subscribe((menuItems: Product[]) => {
+      // Actualiza las opciones de menú al inicio según el tipo seleccionado
+      this.updateMenuItems();
     });
+
+    // Suscribe a cambios en el tipo de menú seleccionado para actualizar las opciones
+    this.orderForm.get('selectedMenu')?.valueChanges.subscribe(() => {
+      this.updateMenuItems();
+    });
+  }
+
+  updateMenuItems(): void {
+    // Filtra las opciones de menú según el tipo seleccionado
+    const selectedType = this.orderForm.get('selectedMenu')?.value;
+
+    this.menuItems = this.menuItems.filter(
+      (item) => item.type === selectedType
+    );
   }
 
   addMenuItem(menuItem: MenuItem): void {
@@ -61,4 +76,6 @@ export class OrderSummaryComponent implements OnInit {
   onSubmit(): void {
     // Resto del código para manejar la submisión del formulario
   }
+
+  // Resto del código...
 }
