@@ -4,6 +4,7 @@ import { LoginService } from '../../services/login.service';
 import { MenuService } from '../../services/menu.service';
 import { Product } from '../../models/product.interface';
 import { MenuItem } from 'src/app/models/menu.interface';
+import { response } from 'express';
 
 @Component({
   selector: 'app-order-summary',
@@ -28,18 +29,10 @@ export class OrderSummaryComponent implements OnInit {
       additionalComments: '',
     });
 
-    this.isAdmin = this.loginService.isAdmin();
-
-    // Usa el servicio de menú correspondiente según el tipo de usuario
-    const menuObservable = this.isAdmin
-      ? this.menuService.getAdminMenu()
-      : this.menuService.getUserMenu();
-
-    menuObservable.subscribe((menuItems: Product[]) => {
-      // Actualiza las opciones de menú al inicio según el tipo seleccionado
-      this.updateMenuItems();
+    this.menuService.getMenu().subscribe((response) => {
+      console.log(response);
+      this.menuItems = response;
     });
-
     // Suscribe a cambios en el tipo de menú seleccionado para actualizar las opciones
     this.orderForm.get('selectedMenu')?.valueChanges.subscribe(() => {
       this.updateMenuItems();
@@ -48,11 +41,10 @@ export class OrderSummaryComponent implements OnInit {
 
   updateMenuItems(): void {
     // Filtra las opciones de menú según el tipo seleccionado
-    const selectedType = this.orderForm.get('selectedMenu')?.value;
-
-    this.menuItems = this.menuItems.filter(
-      (item) => item.type === selectedType
-    );
+    // const selectedType = this.orderForm.get('selectedMenu')?.value;
+    // this.menuItems = this.menuItems.filter(
+    //   (item) => item.type === selectedType
+    // );
   }
 
   addMenuItem(menuItem: MenuItem): void {

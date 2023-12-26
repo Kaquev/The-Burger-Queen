@@ -22,13 +22,7 @@ export class AdminMenuComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    // this.getAdminMenu();
-  }
-
-  // loadAdminMenuItems(): void {
-  //   this.menuItems = this.loginService.getAdminMenu();
-  // }
+  ngOnInit(): void {}
 
   editMenuItem(menuItem: MenuItem): void {
     // Lógica para editar el elemento del menú

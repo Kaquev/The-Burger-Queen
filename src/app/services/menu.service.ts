@@ -10,20 +10,11 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class MenuService {
-  private baseUrl = `${environment.apiUrl}/menu`;
+  private baseUrl = `${environment.apiUrl}/products`;
 
   constructor(private http: HttpClient) {}
 
   getMenu(): Observable<MenuItem[]> {
     return this.http.get<MenuItem[]>(this.baseUrl);
-  }
-
-  // Puedes tener métodos adicionales para obtener menús específicos según el rol
-  getAdminMenu(): Observable<MenuItem[]> {
-    return this.http.get<MenuItem[]>(`${this.baseUrl}/users`);
-  }
-
-  getUserMenu(): Observable<MenuItem[]> {
-    return this.http.get<MenuItem[]>(`${this.baseUrl}/users`);
   }
 }
