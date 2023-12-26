@@ -18,12 +18,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ErrorDialogComponent } from './components/error-dialog.component';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AdminMenuComponent } from './components/admin-menu/admin-menu.component';
 
 import { OrdersComponent } from './components/orders/orders.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProductsComponent } from './components/products/products.component';
+import { AuthInterceptor } from './http-interceptor';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,9 @@ import { ProductsComponent } from './components/products/products.component';
     AppRoutingModule,
     MatTableModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

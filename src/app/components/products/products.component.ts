@@ -10,12 +10,13 @@ import { Product } from '../../models/product.interface';
 export class ProductsComponent implements OnInit {
   public dataSource: Product[] = [];
   public displayedColumns = [
-    'id',
+    'image',
     'name',
     'price',
-    'image',
+    'id',
     'type',
     'dateEntry',
+    'actions',
   ];
 
   constructor(private productService: ProductService) {}

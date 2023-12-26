@@ -7,5 +7,7 @@ h2 {
 }
 .mat-button-toggle-group {
   background-color: #eff4f6;
-  border: 1px solid #ccc;
+}
+.mat-button-toggle {
+  border: 0.5px solid #b0b0b0;
 }
