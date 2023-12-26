@@ -1,0 +1,43 @@
+/* En tu archivo styles.css o en el archivo CSS específico para este componente */
+
+/* Estilo general de la tabla */
+.mat-elevation-z8 {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* Estilo de las celdas */
+.mat-cell,
+.mat-header-cell {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Estilo de las filas impares */
+.mat-row:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+/* Estilo de las filas pares */
+.mat-row:nth-child(even) {
+  background-color: #fff;
+}
+
+/* Estilo de las celdas del encabezado */
+.mat-header-cell {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Estilo para resaltar al pasar el ratón sobre las filas */
+.mat-row:hover {
+  background-color: #f0f0f0;
+}
+
+/* Ajuste para las filas del encabezado */
+.mat-header-row {
+  background-color: #444;
+  color: #fff;
+}

@@ -11,13 +11,20 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { ErrorDialogComponent } from './components/error-dialog.component';
-import { OrderSummaryComponent } from './order-summary/order-summary.component';
-import { HttpClientModule } from '@angular/common/http';
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AdminMenuComponent } from './components/admin-menu/admin-menu.component';
+
+import { OrdersComponent } from './components/orders/orders.component';
+import { UsersComponent } from './components/users/users.component';
+import { ProductsComponent } from './components/products/products.component';
+import { AuthInterceptor } from './http-interceptor';
 
 @NgModule({
   declarations: [
@@ -26,6 +33,9 @@ import { AdminMenuComponent } from './components/admin-menu/admin-menu.component
     ErrorDialogComponent,
     OrderSummaryComponent,
     AdminMenuComponent,
+    ProductsComponent,
+    OrdersComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,16 +44,20 @@ import { AdminMenuComponent } from './components/admin-menu/admin-menu.component
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
+    MatButtonToggleModule,
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
     MatDialogModule,
     MatSelectModule,
+    MatButtonModule,
     AppRoutingModule,
+    MatTableModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
