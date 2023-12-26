@@ -1,93 +1,69 @@
-<form class="container-order" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
-    <mat-form-field>
-        <mat-label>Nombre del cliente</mat-label>
-        <input matInput formControlName="clientName">
-    </mat-form-field>
+<!-- Botones para cada tipo de producto -->
+<nav>
+    <button mat-stroked-button color="basic" (click)="showProducts('Beverages')">Beverages</button>
+    <button mat-stroked-button color="basic" (click)="showProducts('Breakfast')">Breakfast</button>
+    <button mat-stroked-button color="basic" (click)="showProducts('Lunch')">Lunch</button>
+    <button mat-stroked-button color="basic" (click)="showProducts('Combos')">Combos</button>
+    <button mat-stroked-button color="basic" (click)="showProducts('Sides')">Sides</button>
+</nav>
 
-    <mat-form-field>
-        <mat-label>Seleccione un menú</mat-label>
-        <mat-select formControlName="selectedMenu">
-            <mat-option value="desayuno">Menú Desayuno</mat-option>
-            <mat-option value="restoDia">Menú Resto del Día</mat-option>
-        </mat-select>
-    </mat-form-field>
 
-    <div *ngIf="orderForm.get('selectedMenu')?.value === 'desayuno'">
-        <h3>Menú Desayuno</h3>
-        <div *ngFor="let item of menuItems ">
-            <mat-checkbox [formControlName]="item.name">{{ item.name }} - ${{ item.price }}</mat-checkbox>
-        </div>
+<!-- Contenedor para mostrar los productos -->
+<div class="products-container" *ngIf="selectedType">
+    <div class="card-products" *ngFor="let product of products | filterByType:selectedType">
+        <img [src]="product.image" alt="{{ product.name }}">
+        <p>{{ product.name }} - ${{ product.price }}</p>
+        <button class="btn-card" mat-raised-button color="accent" (click)="addToOrder(product)">Add to Order</button>
     </div>
-
-    <div *ngIf="orderForm.get('selectedMenu')?.value === 'restoDia'">
-        <h3>Menú Resto del Día</h3>
-        <div *ngFor="let item of menuItems ">
-            <mat-checkbox [formControlName]="item.name">{{ item.name }} - ${{ item.price }}</mat-checkbox>
-        </div>
-    </div>
-
-    <mat-form-field>
-        <mat-label>Textarea</mat-label>
-        <textarea matInput formControlName="additionalComments"></textarea>
-    </mat-form-field>
-
-    <div>
-        <h3>Resumen del Pedido</h3>
-        <ul>
-            <li *ngFor="let item of getSelectedItems()">
-                {{ item.name }} - ${{ item.price }}
-            </li>
-        </ul>
-        <p>Total: ${{ calculateTotal() }}</p>
-    </div>
-
-    <button type="submit">Realizar Pedido</button>
-</form>
+</div>
 
 
+<!-- Resumen de la orden -->
+<div class="order-summary">
+    <h3>Detalle de la orden</h3>
+
+    <table>
+        <thead>
+            <!-- <tr class="tr-titulos"> -->
+            <th>Item</th>
+            <th>Price</th>
+            <th>Action</th>
+            <!-- </tr> -->
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of orderItems">
+                <td>{{ item.name }} ({{ item.qty }})</td>
+                <td>${{ item.price }}</td>
+                <td>
+                    <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon">
+                        <mat-icon class="delete-icon" (click)="removeFromOrder(item.id)">delete</mat-icon>
+                    </button>
 
 
-
-<!-- <form class="container-order">
-    <h1>Order Pedido</h1>
-    <mat-form-field>
-        <mat-label>Nombre del cliente</mat-label>
-        <input matInput>
-        <mat-select-trigger>
-            <button mat-icon-button aria-label="Check">
-                <mat-icon>check</mat-icon>
-            </button>
-            <button mat-icon-button aria-label="Eliminar">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </mat-select-trigger>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Menu</mat-label>
-        <mat-select>
-            <mat-option value="one">Primer option</mat-option>
-            <mat-option value="two">Segundo option</mat-option>
-            <mat-option value="three">Tercero option</mat-option>
-            <mat-option value="four">Cuarto option</mat-option>
-            <mat-option value="five">Quinto option</mat-option>
-            <mat-option value="six">Sexto option</mat-option>
-            <mat-option value="seven">Séptimo option</mat-option>
-            <mat-option value="eight">Octavo option</mat-option>
-        </mat-select>
-        <mat-select-trigger>
-            <button mat-icon-button aria-label="Check">
-                <mat-icon>check</mat-icon>
-            </button>
-            <button mat-icon-button aria-label="Eliminar">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </mat-select-trigger>
-    </mat-form-field>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="total-order">Total: ${{ total }}</p>
+    <button class="btn-generate-order" mat-raised-button color="accent" (click)="calculateTotal()">Generar
+        orden</button>
 
 
 
-    <mat-form-field>
-        <mat-label>Comentario Adicional</mat-label>
-        <textarea matInput></textarea>
-    </mat-form-field>
-</form> -->
+
+</div>
+
+<!-- <div class="order-summary">
+    <h3>Order Summary</h3>
+    <mat-list role="list">
+        <mat-list-item *ngFor="let item of orderItems">
+            {{ item.name }} - ${{ item.price / 100 }}
+            <button class="btn-remove" mat-raised-button color="accent"
+                (click)="removeFromOrder(item.id)">Remove</button>
+        </mat-list-item>
+    </mat-list>
+    <button class="btn-total" mat-raised-button color="accent">total</button>
+    <p>
+        Options selected: {{total}}
+    </p>
+</div> -->

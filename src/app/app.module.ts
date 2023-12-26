@@ -13,7 +13,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ErrorDialogComponent } from './components/error-dialog.component';
@@ -25,6 +26,7 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { UsersComponent } from './components/users/users.component';
 import { ProductsComponent } from './components/products/products.component';
 import { AuthInterceptor } from './http-interceptor';
+import { FilterByTypePipe } from './pipes/filterByType';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { AuthInterceptor } from './http-interceptor';
     ProductsComponent,
     OrdersComponent,
     UsersComponent,
+    FilterByTypePipe,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,8 @@ import { AuthInterceptor } from './http-interceptor';
     MatButtonModule,
     AppRoutingModule,
     MatTableModule,
+    MatCardModule,
+    MatListModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

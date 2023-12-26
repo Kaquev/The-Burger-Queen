@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
-import { MenuService } from '../../services/menu.service';
 import { Product } from '../../models/product.interface';
-import { MenuItem } from 'src/app/models/menu.interface';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-order-summary',
@@ -11,71 +9,65 @@ import { MenuItem } from 'src/app/models/menu.interface';
   styleUrls: ['./order-summary.component.css'],
 })
 export class OrderSummaryComponent implements OnInit {
-  orderForm!: FormGroup;
-  menuItems: Product[] = [];
+  products: Product[] = [];
+  selectedType: string | null = null;
+  orderItems: any[] = [];
+  total: number = 0;
   isAdmin: boolean = false;
 
   constructor(
-    private fb: FormBuilder,
     private loginService: LoginService,
-    private menuService: MenuService
+    private productService: ProductService
   ) {}
 
+  showProducts(type: string): void {
+    this.selectedType = type;
+  }
   ngOnInit(): void {
-    this.orderForm = this.fb.group({
-      clientName: '',
-      selectedMenu: '',
-      additionalComments: '',
-    });
-
-    this.isAdmin = this.loginService.isAdmin();
-
-    // Usa el servicio de menú correspondiente según el tipo de usuario
-    const menuObservable = this.isAdmin
-      ? this.menuService.getAdminMenu()
-      : this.menuService.getUserMenu();
-
-    menuObservable.subscribe((menuItems: Product[]) => {
+    this.productService.getProducts().subscribe((response: Product[]) => {
       // Actualiza las opciones de menú al inicio según el tipo seleccionado
-      this.updateMenuItems();
-    });
-
-    // Suscribe a cambios en el tipo de menú seleccionado para actualizar las opciones
-    this.orderForm.get('selectedMenu')?.valueChanges.subscribe(() => {
-      this.updateMenuItems();
+      this.products = response;
+      this.selectedType = 'Beverages';
     });
   }
 
-  updateMenuItems(): void {
-    // Filtra las opciones de menú según el tipo seleccionado
-    const selectedType = this.orderForm.get('selectedMenu')?.value;
+  showType(product: Product): void {
+    alert(`El tipo de producto es: ${product.type}`);
+  }
 
-    this.menuItems = this.menuItems.filter(
-      (item) => item.type === selectedType
+  addToOrder(product: Product): void {
+    const existingProductIndex = this.orderItems.findIndex(
+      (item) => item.id === product.id
     );
+
+    if (existingProductIndex !== -1) {
+      // Si el producto ya existe, incrementa la cantidad y actualiza el precio total
+      this.orderItems[existingProductIndex].qty++;
+      this.orderItems[existingProductIndex].price += product.price;
+    } else {
+      // Si el producto no existe, agrégalo al arreglo
+      this.orderItems.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        qty: 1,
+      });
+    }
+
+    this.calculateTotal();
   }
 
-  addMenuItem(menuItem: MenuItem): void {
-    // Resto del código para agregar un elemento al formulario
+  removeFromOrder(productId: number): void {
+    this.orderItems = this.orderItems.filter((item) => {
+      if (item.id === productId) {
+        this.total -= item.price;
+      }
+      return item.id !== productId;
+    });
+    this.calculateTotal();
   }
-
-  removeMenuItem(menuItemName: string): void {
-    // Resto del código para eliminar un elemento del formulario
+  calculateTotal(): void {
+    this.total = this.orderItems.reduce((acc, item) => acc + item.price, 0);
   }
-
-  getSelectedItems(): MenuItem[] {
-    return [];
-    // Resto del código para obtener elementos seleccionados
-  }
-
-  calculateTotal(): number {
-    return 0;
-    // Resto del código para calcular el total
-  }
-
-  onSubmit(): void {
-    // Resto del código para manejar la submisión del formulario
-  }
-
   // Resto del código...
 }
