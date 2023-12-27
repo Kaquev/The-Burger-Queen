@@ -1,0 +1,45 @@
+<p>order-summary works!</p>
+<h3 mat-dialog-title>Detalle de la orden</h3>
+<mat-dialog-content>
+
+
+    <!-- <div class="order-summary">
+        <h3>Detalle de la orden</h3>
+
+        <table>
+            <thead>
+                <tr class="tr-titulos">
+                <th>Item</th>
+                <th>Price</th>
+                <th>Action</th>
+               </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of orderItems">
+                    <td>{{ item.name }} ({{ item.qty }})</td>
+                    <td>${{ item.price }}</td>
+                    <td>
+                        <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon">
+                            <mat-icon class="delete-icon" (click)="removeFromOrder(item.id)">delete</mat-icon>
+                        </button>
+
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="total-order">Total: ${{ total }}</p>
+        <button class="btn-generate-order" mat-raised-button color="accent" (click)="calculateTotal()">Generar
+            orden</button>
+
+
+
+
+    </div> -->
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="onCloseClick()">Cerrar</button>
+</mat-dialog-actions>

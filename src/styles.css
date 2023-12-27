@@ -1,33 +1,16 @@
-/* :root {
-  --color-primary: #3498db;
-  --color-secondary: #2ecc71;
+:root {
+  --color-primary: #cd36a7;
+  --color-secondary: #19acea;
   --color-background: #ecf0f1;
   --color-text: #333;
-} */
-
-.container-img {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  justify-items: center;
-  align-items: center;
-  gap: 27px;
-  margin-top: 120px;
-}
-
-.logo {
-  width: 35%;
-  border-radius: 107px;
-}
-.titulo-logo {
-  width: 55%;
-}
-
-html,
-body {
-  height: 100%;
 }
 body {
+  background-image: url("./assets/fondo.app3.svg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  padding: 0;
+  font-family: "Arial", sans-serif;
 }

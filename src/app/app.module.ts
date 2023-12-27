@@ -18,7 +18,7 @@ import { MatListModule } from '@angular/material/list';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ErrorDialogComponent } from './components/error-dialog.component';
-import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { OrderTakeComponent } from './components/order-take/order-take.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AdminMenuComponent } from './components/admin-menu/admin-menu.component';
 
@@ -27,18 +27,20 @@ import { UsersComponent } from './components/users/users.component';
 import { ProductsComponent } from './components/products/products.component';
 import { AuthInterceptor } from './http-interceptor';
 import { FilterByTypePipe } from './pipes/filterByType';
+import { OrderSummaryComponent } from './components/order-summary/order-summary/order-summary.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ErrorDialogComponent,
-    OrderSummaryComponent,
+    OrderTakeComponent,
     AdminMenuComponent,
     ProductsComponent,
     OrdersComponent,
     UsersComponent,
     FilterByTypePipe,
+    OrderSummaryComponent,
   ],
   imports: [
     BrowserModule,

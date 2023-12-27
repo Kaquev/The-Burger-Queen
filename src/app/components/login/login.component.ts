@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
           if (response.user.role === 'admin') {
             this.router.navigate(['/admin-menu']);
           } else {
-            this.router.navigate(['/order-summary']);
+            this.router.navigate(['/order-take']);
           }
         },
         (error) => {

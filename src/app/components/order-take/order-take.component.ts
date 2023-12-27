@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Product } from '../../models/product.interface';
 import { ProductService } from 'src/app/services/product.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-order-summary',
-  templateUrl: './order-summary.component.html',
-  styleUrls: ['./order-summary.component.css'],
+  selector: 'app-take-order',
+  templateUrl: './order-take.component.html',
+  styleUrls: ['./order-take.component.css'],
 })
-export class OrderSummaryComponent implements OnInit {
+export class OrderTakeComponent implements OnInit {
   products: Product[] = [];
   selectedType: string | null = null;
   orderItems: any[] = [];
@@ -17,7 +18,8 @@ export class OrderSummaryComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private productService: ProductService
+    private productService: ProductService,
+    public dialog: MatDialog
   ) {}
 
   showProducts(type: string): void {

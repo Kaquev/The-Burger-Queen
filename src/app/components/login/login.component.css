@@ -4,17 +4,25 @@
   margin: 20px;
 }
 body {
-  background-image: url("./../../../assets/fondo.app3.svg");
-  background-size: cover; /* O ajusta según tus preferencias */
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  margin: 0; /* Asegura que no haya márgenes predeterminados */
-  padding: 0; /* Asegura que no haya relleno predeterminado */
-  font-family: "Arial", sans-serif; /* O la fuente que prefieras */
-  height: 100vh;
+  min-height: 100vh;
+}
+.container-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  gap: 27px;
+  margin-top: 120px;
 }
 
+.logo {
+  width: 35%;
+  border-radius: 107px;
+}
+.titulo-logo {
+  width: 55%;
+}
 .container-principal {
   display: grid;
   grid-template-columns: 1fr;
@@ -24,7 +32,7 @@ body {
   justify-content: center;
   justify-items: center;
   margin-top: 50px;
-  max-height: 100vh; /* o el valor que prefieras */
+  max-height: 100vh;
   overflow: hidden;
 }
 
