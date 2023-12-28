@@ -2,6 +2,12 @@
 
 <h3>TOMAR ORDEN</h3>
 
+
+<div class="input-name">
+    <input placeholder="Ingrese nombre de cliente" type="text" [(ngModel)]="clientName">
+</div>
+
+
 <nav>
     <button mat-raised-button color="basic" (click)="showProducts('Beverages')">Beverages</button>
     <button mat-raised-button color="basic" (click)="showProducts('Breakfast')">Breakfast</button>
@@ -13,6 +19,7 @@
 
 <!-- Contenedor para mostrar los productos -->
 <div class="products-container" *ngIf="selectedType">
+
     <div class="card-products" *ngFor="let product of products | filterByType:selectedType">
         <img [src]="product.image" alt="{{ product.name }}">
         <p>{{ product.name }} - ${{ product.price }}</p>
@@ -48,25 +55,10 @@
         </tbody>
     </table>
     <p class="total-order">Total: ${{ total }}</p>
-    <button class="btn-generate-order" mat-raised-button color="accent" (click)="calculateTotal()">Generar
+    <button class="btn-generate-order" mat-raised-button color="accent" (click)="createOrder()">Generar
         orden</button>
 
 
 
 
 </div>
-
-<!-- <div class="order-summary">
-    <h3>Order Summary</h3>
-    <mat-list role="list">
-        <mat-list-item *ngFor="let item of orderItems">
-            {{ item.name }} - ${{ item.price / 100 }}
-            <button class="btn-remove" mat-raised-button color="accent"
-                (click)="removeFromOrder(item.id)">Remove</button>
-        </mat-list-item>
-    </mat-list>
-    <button class="btn-total" mat-raised-button color="accent">total</button>
-    <p>
-        Options selected: {{total}}
-    </p>
-</div> -->

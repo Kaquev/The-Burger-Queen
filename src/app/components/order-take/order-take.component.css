@@ -9,13 +9,14 @@ body {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fill, 160px);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 5px;
   grid-row-gap: 10px;
   background-color: white;
   width: 95%;
   height: 80%;
   margin: 0 auto;
+  padding-bottom: 45px;
 }
 
 .card-products {
@@ -65,13 +66,21 @@ nav {
   display: flex;
   justify-content: center;
 }
+.input-name {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  margin-bottom: 12px;
+  width: 20%;
+  margin-left: 400px;
+  background-color: aliceblue;
+}
 
 .order-summary {
-  background-color: aliceblue;
-  margin-top: -380px; /* O ajusta la propiedad de margen según tus necesidades */
   display: flex;
   flex-direction: column;
   padding: 20px; /* Añade algún relleno para separar el contenido del borde del contenedor */
   border: 1px solid #ccc; /* Añade un borde para separar visualmente del contenido principal */
   border-radius: 8px; /* Añade bordes redondeados para un aspecto más suave */
+  background-color: aliceblue;
 }

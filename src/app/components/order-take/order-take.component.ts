@@ -15,6 +15,7 @@ export class OrderTakeComponent implements OnInit {
   orderItems: any[] = [];
   total: number = 0;
   isAdmin: boolean = false;
+  clientName: string = '';
 
   constructor(
     private loginService: LoginService,
@@ -71,5 +72,6 @@ export class OrderTakeComponent implements OnInit {
   calculateTotal(): void {
     this.total = this.orderItems.reduce((acc, item) => acc + item.price, 0);
   }
-  // Resto del código...
+
+  createOrder() {}
 }
