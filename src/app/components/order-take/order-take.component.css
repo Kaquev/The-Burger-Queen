@@ -65,15 +65,21 @@ thead {
 nav {
   display: flex;
   justify-content: center;
+  margin-bottom: 15px;
+}
+nav button {
+  background-color: #ff4081;
+  color: #ffffff;
+  margin-right: 15px;
 }
 .input-name {
   display: flex;
   justify-content: center;
   justify-items: center;
   margin-bottom: 12px;
-  width: 20%;
+  width: 167px;
   margin-left: 400px;
-  background-color: aliceblue;
+  border: 10px solid #f0f8ff;
 }
 
 .order-summary {
@@ -82,5 +88,5 @@ nav {
   padding: 20px; /* Añade algún relleno para separar el contenido del borde del contenedor */
   border: 1px solid #ccc; /* Añade un borde para separar visualmente del contenido principal */
   border-radius: 8px; /* Añade bordes redondeados para un aspecto más suave */
-  background-color: aliceblue;
+  background-color: #f0f8ff;
 }
